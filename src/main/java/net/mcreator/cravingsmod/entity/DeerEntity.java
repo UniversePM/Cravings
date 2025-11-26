@@ -45,7 +45,7 @@ public class DeerEntity extends Animal {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new TemptGoal(this, 0.6, Ingredient.of(Items.APPLE), true));
-		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, (float) 7, 3, 4));
+		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, (float) 7, 1.3, 1.6));
 		this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, (float) 10));
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.8));
 		this.goalSelector.addGoal(5, new BreedGoal(this, 1));

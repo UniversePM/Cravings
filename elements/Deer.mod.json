@@ -10,7 +10,8 @@
       "fixedValue": false
     },
     "isShakingCondition": {
-      "fixedValue": false
+      "fixedValue": false,
+      "name": "DeerIsEntityModelShaking"
     },
     "solidBoundingBox": {
       "fixedValue": false
@@ -22,7 +23,52 @@
       "fixedValue": 1.0
     },
     "modelLayers": [],
-    "animations": [],
+    "animations": [
+      {
+        "animation": {
+          "value": "CUSTOM:DeerAnimation.waking"
+        },
+        "speed": 1.0,
+        "condition": {
+          "name": "DeerWake"
+        },
+        "walking": false,
+        "amplitude": 1.0
+      },
+      {
+        "animation": {
+          "value": "CUSTOM:DeerAnimation.laying"
+        },
+        "speed": 1.0,
+        "condition": {
+          "name": "DeerLay"
+        },
+        "walking": false,
+        "amplitude": 1.0
+      },
+      {
+        "animation": {
+          "value": "CUSTOM:DeerAnimation.run"
+        },
+        "speed": 1.0,
+        "condition": {
+          "name": "DeerPlaybackCondition"
+        },
+        "walking": true,
+        "amplitude": 1.0
+      },
+      {
+        "animation": {
+          "value": "CUSTOM:DeerAnimation.walk"
+        },
+        "speed": 1.3,
+        "condition": {
+          "name": "DeerWalkAnim"
+        },
+        "walking": true,
+        "amplitude": 1.2
+      }
+    ],
     "modelWidth": 1.5,
     "modelHeight": 1.5,
     "modelShadowSize": 1.5,
@@ -39,6 +85,9 @@
     "creativeTabs": [
       {
         "value": "MISC"
+      },
+      {
+        "value": "CUSTOM:Cravings"
       }
     ],
     "isBoss": false,
@@ -67,7 +116,7 @@
     "attackStrength": 3,
     "attackKnockback": 0.0,
     "knockbackResistance": 0.0,
-    "movementSpeed": 0.3,
+    "movementSpeed": 0.13,
     "stepHeight": 0.6,
     "armorBaseValue": 0.0,
     "trackingRange": 64,
@@ -119,12 +168,41 @@
     "raidCelebrationSound": {
       "value": ""
     },
-    "entityDataEntries": [],
+    "entityDataEntries": [
+      {
+        "name": "escaping",
+        "type": "logic",
+        "value": false
+      },
+      {
+        "name": "walking",
+        "type": "logic",
+        "value": false
+      },
+      {
+        "name": "laying",
+        "type": "logic",
+        "value": false
+      },
+      {
+        "name": "waking",
+        "type": "logic",
+        "value": false
+      },
+      {
+        "name": "bruh",
+        "type": "logic",
+        "value": false
+      }
+    ],
+    "onMobTickUpdate": {
+      "name": "StopAnim"
+    },
     "hasAI": true,
     "aiBase": "(none)",
-    "aixml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"aitasks_container\" deletable=\"false\" x=\"40\" y=\"40\"><next><block type=\"follow_item_in_hands\"><field name=\"speed\">0.6</field><field name=\"scared\">TRUE</field><field name=\"condition\">null,null</field><value name=\"item\"><block type=\"mcitem_all\"><field name=\"value\">Items.APPLE</field></block></value><next><block type=\"avoid_entity\"><field name=\"entity\">EntityPlayer</field><field name=\"radius\">7</field><field name=\"farspeed\">1.3</field><field name=\"nearspeed\">1.6</field><field name=\"condition\">null,null</field><next><block type=\"watch_closest_entity\"><field name=\"entity\">EntityPlayer</field><field name=\"radius\">10</field><field name=\"condition\">null,null</field><next><block type=\"wander_avoid_water\"><field name=\"speed\">0.8</field><field name=\"condition\">null,null</field><next><block type=\"breed\"><field name=\"speed\">1</field><field name=\"condition\">null,null</field><next><block type=\"look_around\"><field name=\"condition\">null,null</field><next><block type=\"swim_in_water\"><field name=\"condition\">null,null</field><next><block type=\"eat_grass\"><field name=\"condition\">null,null</field><next><block type=\"leap_at_target\"><field name=\"speed\">0.5</field><field name=\"condition\">null,null</field></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>",
+    "aixml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"aitasks_container\" deletable=\"false\" x=\"40\" y=\"40\"><next><block type=\"follow_entity\"><field name=\"speed\">1</field><field name=\"maxrange\">10</field><field name=\"followarea\">5</field><field name=\"condition\">DeerAI,null</field><next><block type=\"follow_item_in_hands\"><field name=\"speed\">0.6</field><field name=\"scared\">TRUE</field><field name=\"condition\">DeerRun,null</field><value name=\"item\"><block type=\"mcitem_all\"><field name=\"value\">Items.APPLE</field></block></value><next><block type=\"panic_when_attacked\"><field name=\"speed\">1.4</field><field name=\"condition\">DeerAI,null</field><next><block type=\"avoid_entity\"><field name=\"entity\">EntityPlayer</field><field name=\"radius\">7</field><field name=\"farspeed\">1.3</field><field name=\"nearspeed\">1.6</field><field name=\"condition\">DeerRun,null</field><next><block type=\"wander_avoid_water\"><field name=\"speed\">0.8</field><field name=\"condition\">DeerAI,null</field><next><block type=\"breed\"><field name=\"speed\">1</field><field name=\"condition\">DeerAI,null</field><next><block type=\"look_around\"><field name=\"condition\">DeerAI,null</field><next><block type=\"swim_in_water\"><field name=\"condition\">null,null</field><next><block type=\"eat_grass\"><field name=\"condition\">DeerAI,null</field></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>",
     "breedable": true,
-    "tameable": false,
+    "tameable": true,
     "breedTriggerItems": [
       {
         "value": "Items.APPLE"

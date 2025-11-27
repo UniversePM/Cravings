@@ -3053,7 +3053,7 @@
           "src/main/resources/assets/cravings_mod/items/bison_spawn_egg.json"
         ]
       },
-      "path": "~/CravingsAnimals"
+      "path": "~/CravingsAnimals/Bison"
     },
     {
       "name": "Deer",
@@ -3069,14 +3069,14 @@
           "src/main/resources/assets/cravings_mod/items/deer_spawn_egg.json"
         ]
       },
-      "path": "~/CravingsAnimals"
+      "path": "~/CravingsAnimals/Deer"
     },
     {
-      "name": "DeerFollow",
+      "name": "DeerRun",
       "type": "procedure",
       "compiles": true,
       "locked_code": false,
-      "registry_name": "deer_follow",
+      "registry_name": "deer_run",
       "metadata": {
         "dependencies": [
           {
@@ -3086,10 +3086,165 @@
         ],
         "return_type": "logic",
         "files": [
-          "src/main/java/net/mcreator/cravingsmod/procedures/DeerFollowProcedure.java"
+          "src/main/java/net/mcreator/cravingsmod/procedures/DeerRunProcedure.java"
         ]
       },
-      "path": "~/CravingsAnimals"
+      "path": "~/CravingsAnimals/Deer"
+    },
+    {
+      "name": "DeerPlaybackCondition",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deer_playback_condition",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/cravingsmod/procedures/DeerPlaybackConditionProcedure.java"
+        ]
+      },
+      "path": "~/CravingsAnimals/Deer"
+    },
+    {
+      "name": "DeerIsEntityModelShaking",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deer_is_entity_model_shaking",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/cravingsmod/procedures/DeerIsEntityModelShakingProcedure.java"
+        ]
+      },
+      "path": "~/CravingsAnimals/Deer"
+    },
+    {
+      "name": "StopAnim",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "stop_anim",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/cravingsmod/procedures/StopAnimProcedure.java"
+        ]
+      },
+      "path": "~/CravingsAnimals/Deer"
+    },
+    {
+      "name": "DeerWalkAnim",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deer_walk_anim",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/cravingsmod/procedures/DeerWalkAnimProcedure.java"
+        ]
+      },
+      "path": "~/CravingsAnimals/Deer"
+    },
+    {
+      "name": "DeerLay",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deer_lay",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/cravingsmod/procedures/DeerLayProcedure.java"
+        ]
+      },
+      "path": "~/CravingsAnimals/Deer"
+    },
+    {
+      "name": "DeerWake",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deer_wake",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/cravingsmod/procedures/DeerWakeProcedure.java"
+        ]
+      },
+      "path": "~/CravingsAnimals/Deer"
+    },
+    {
+      "name": "DeerAI",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deer_ai",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/cravingsmod/procedures/DeerAIProcedure.java"
+        ]
+      },
+      "path": "~/CravingsAnimals/Deer"
     }
   ],
   "variable_elements": [],
@@ -3672,7 +3827,16 @@
       },
       {
         "name": "CravingsAnimals",
-        "children": []
+        "children": [
+          {
+            "name": "Bison",
+            "children": []
+          },
+          {
+            "name": "Deer",
+            "children": []
+          }
+        ]
       }
     ]
   },

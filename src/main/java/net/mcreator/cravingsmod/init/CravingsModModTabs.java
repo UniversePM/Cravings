@@ -87,6 +87,7 @@ public class CravingsModModTabs {
 				tabData.accept(CravingsModModItems.JALAPENO_SEEDS.get());
 				tabData.accept(CravingsModModItems.GREEN_PEPPER.get());
 				tabData.accept(CravingsModModItems.GREEN_PEPPER_SEEDS.get());
+				tabData.accept(CravingsModModItems.DEER_SPAWN_EGG.get());
 			}).build());
 
 	@SubscribeEvent

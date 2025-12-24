@@ -18,7 +18,7 @@ import net.minecraft.core.BlockPos;
 import java.util.Optional;
 
 public class LemonSaplingBlock extends SaplingBlock {
-	public static final TreeGrower TREE_GROWER = new TreeGrower("lemon_sapling", Optional.of(getFeatureKey("oak")), Optional.of(getFeatureKey("oak")), Optional.of(getFeatureKey("oak")));
+	public static final TreeGrower TREE_GROWER = new TreeGrower("lemon_sapling", Optional.of(getFeatureKey("cravings_mod:lemon_tree")), Optional.of(getFeatureKey("cravings_mod:lemon_tree")), Optional.of(getFeatureKey("cravings_mod:lemon_tree")));
 
 	public LemonSaplingBlock(BlockBehaviour.Properties properties) {
 		super(TREE_GROWER, properties.mapColor(MapColor.PLANT).randomTicks().sound(SoundType.GRASS).instabreak().noCollission().pushReaction(PushReaction.DESTROY));

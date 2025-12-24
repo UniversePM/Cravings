@@ -2,15 +2,15 @@ package net.mcreator.cravingsmod.block;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.TintedParticleLeavesBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-public class LemonLeavesBlock extends LeavesBlock {
+public class LemonLeavesBlock extends TintedParticleLeavesBlock {
 	public LemonLeavesBlock(BlockBehaviour.Properties properties) {
-		super(properties.sound(SoundType.GRASS).strength(1f, 0.2f).noOcclusion().ignitedByLava());
+		super(0f, properties.sound(SoundType.GRASS).strength(1f, 0.2f).noOcclusion().ignitedByLava().isSuffocating((bs, br, bp) -> false).isViewBlocking((bs, br, bp) -> false));
 	}
 
 	@Override

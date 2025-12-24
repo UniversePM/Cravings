@@ -71,7 +71,6 @@
   "item.cravings_mod.grape_crop": "Grape Crop",
   "item.cravings_mod.lettuce_crop": "Lettuce Crop",
   "item.cravings_mod.radish_crop": "Radish Crop",
-  "item.cravings_mod.green_bean_crop": "Graines de haricots verts",
   "item.cravings_mod.green_beans": "Haricots verts",
   "item.cravings_mod.pitaya_crop": "Graines de pitaya",
   "item.cravings_mod.tomato_crop": "Graines de tomates",
@@ -91,5 +90,7 @@
   "entity.cravings_mod.bison": "Bison",
   "item.cravings_mod.bison_spawn_egg": "Bison Spawn Egg",
   "item.cravings_mod.deer_spawn_egg": "Deer Spawn Egg",
-  "entity.cravings_mod.deer": "Deer"
+  "entity.cravings_mod.deer": "Deer",
+  "item.cravings_mod.green_bean_crop": "Green Bean Crop",
+  "item.cravings_mod.green_bean_seeds": "Radish Seeds"
 }

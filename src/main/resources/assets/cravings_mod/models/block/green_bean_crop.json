@@ -1,7 +1,7 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "cravings_mod:block/green_bean_high_0",
+    "cross": "cravings_mod:block/green_bean_low_0",
     "particle": "cravings_mod:block/lemon_leaves"
   },
   "render_type": "cutout"

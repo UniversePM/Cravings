@@ -1,16 +1,4 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "cravings_mod:blocks/green_bean_crop",
-  "pools": [
-    {
-      "rolls": 1.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
-      "entries": [
-      ]
-    }
-  ]
+  "random_sequence": "cravings_mod:blocks/green_bean_crop"
 }

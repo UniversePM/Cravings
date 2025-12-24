@@ -6,7 +6,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.util.Mth;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.GuiGraphics;
 
@@ -14,8 +14,6 @@ import net.mcreator.cravingsmod.world.inventory.FryerGUIMenu;
 import net.mcreator.cravingsmod.procedures.FryerGUITickProcedure;
 import net.mcreator.cravingsmod.procedures.FryerGUITick2Procedure;
 import net.mcreator.cravingsmod.init.CravingsModModScreens;
-
-import com.mojang.blaze3d.systems.RenderSystem;
 
 public class FryerGUIScreen extends AbstractContainerScreen<FryerGUIMenu> implements CravingsModModScreens.ScreenAccessor {
 	private final Level world;
@@ -49,20 +47,16 @@ public class FryerGUIScreen extends AbstractContainerScreen<FryerGUIMenu> implem
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
-		RenderSystem.setShaderColor(1, 1, 1, 1);
-		RenderSystem.enableBlend();
-		RenderSystem.defaultBlendFunc();
-		guiGraphics.blit(RenderType::guiTextured, texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
-		guiGraphics.blit(RenderType::guiTextured, ResourceLocation.parse("cravings_mod:textures/screens/fire.png"), this.leftPos + 35, this.topPos + 54, 0, 0, 6, 8, 6, 8);
-		guiGraphics.blit(RenderType::guiTextured, ResourceLocation.parse("cravings_mod:textures/screens/fire.png"), this.leftPos + 63, this.topPos + 54, 0, 0, 6, 8, 6, 8);
-		guiGraphics.blit(RenderType::guiTextured, ResourceLocation.parse("cravings_mod:textures/screens/bubbles.png"), this.leftPos + 35, this.topPos + 31, 0, 0, 6, 8, 6, 8);
-		guiGraphics.blit(RenderType::guiTextured, ResourceLocation.parse("cravings_mod:textures/screens/bubbles.png"), this.leftPos + 63, this.topPos + 31, 0, 0, 6, 8, 6, 8);
-		guiGraphics.blit(RenderType::guiTextured, ResourceLocation.parse("cravings_mod:textures/screens/frybasket.png"), this.leftPos + 80, this.topPos + 38, Mth.clamp((int) FryerGUITickProcedure.execute(world, x, y, z) * 16, 0, 64), 0, 16, 16, 80,
-				16);
-		guiGraphics.blit(RenderType::guiTextured, ResourceLocation.parse("cravings_mod:textures/screens/oilbar.png"), this.leftPos + 92, this.topPos + 4, Mth.clamp((int) FryerGUITick2Procedure.execute(world, x, y, z) * 64, 0, 256), 0, 64, 32, 320,
-				32);
-		RenderSystem.disableBlend();
+	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("cravings_mod:textures/screens/fire.png"), this.leftPos + 35, this.topPos + 54, 0, 0, 6, 8, 6, 8);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("cravings_mod:textures/screens/fire.png"), this.leftPos + 63, this.topPos + 54, 0, 0, 6, 8, 6, 8);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("cravings_mod:textures/screens/bubbles.png"), this.leftPos + 35, this.topPos + 31, 0, 0, 6, 8, 6, 8);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("cravings_mod:textures/screens/bubbles.png"), this.leftPos + 63, this.topPos + 31, 0, 0, 6, 8, 6, 8);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("cravings_mod:textures/screens/frybasket.png"), this.leftPos + 80, this.topPos + 38, Mth.clamp((int) FryerGUITickProcedure.execute(world, x, y, z) * 16, 0, 64), 0, 16, 16,
+				80, 16);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("cravings_mod:textures/screens/oilbar.png"), this.leftPos + 92, this.topPos + 4, Mth.clamp((int) FryerGUITick2Procedure.execute(world, x, y, z) * 64, 0, 256), 0, 64, 32,
+				320, 32);
 	}
 
 	@Override

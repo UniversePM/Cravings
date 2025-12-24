@@ -16,18 +16,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.core.registries.BuiltInRegistries;
 
-import net.mcreator.cravingsmod.block.entity.TomatoCropBlockEntity;
-import net.mcreator.cravingsmod.block.entity.RadishCropBlockEntity;
-import net.mcreator.cravingsmod.block.entity.PitayaCropBlockEntity;
-import net.mcreator.cravingsmod.block.entity.LettuceCropBlockEntity;
-import net.mcreator.cravingsmod.block.entity.JalapenoCropBlockEntity;
-import net.mcreator.cravingsmod.block.entity.GreenPepperCropBlockEntity;
-import net.mcreator.cravingsmod.block.entity.GreenBeanCropBlockEntity;
-import net.mcreator.cravingsmod.block.entity.GrapeCropBlockEntity;
-import net.mcreator.cravingsmod.block.entity.FryerBlockEntity;
+import net.mcreator.cravingsmod.block.entity.*;
 import net.mcreator.cravingsmod.CravingsModMod;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class CravingsModModBlockEntities {
 	public static final DeferredRegister<BlockEntityType<?>> REGISTRY = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, CravingsModMod.MODID);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FryerBlockEntity>> FRYER = register("fryer", CravingsModModBlocks.FRYER, FryerBlockEntity::new);
@@ -36,9 +28,9 @@ public class CravingsModModBlockEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TomatoCropBlockEntity>> TOMATO_CROP = register("tomato_crop", CravingsModModBlocks.TOMATO_CROP, TomatoCropBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PitayaCropBlockEntity>> PITAYA_CROP = register("pitaya_crop", CravingsModModBlocks.PITAYA_CROP, PitayaCropBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RadishCropBlockEntity>> RADISH_CROP = register("radish_crop", CravingsModModBlocks.RADISH_CROP, RadishCropBlockEntity::new);
-	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GreenBeanCropBlockEntity>> GREEN_BEAN_CROP = register("green_bean_crop", CravingsModModBlocks.GREEN_BEAN_CROP, GreenBeanCropBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<JalapenoCropBlockEntity>> JALAPENO_CROP = register("jalapeno_crop", CravingsModModBlocks.JALAPENO_CROP, JalapenoCropBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GreenPepperCropBlockEntity>> GREEN_PEPPER_CROP = register("green_pepper_crop", CravingsModModBlocks.GREEN_PEPPER_CROP, GreenPepperCropBlockEntity::new);
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GreenBeanCropBlockEntity>> GREEN_BEAN_CROP = register("green_bean_crop", CravingsModModBlocks.GREEN_BEAN_CROP, GreenBeanCropBlockEntity::new);
 
 	// Start of user code block custom block entities
 	// End of user code block custom block entities
@@ -54,5 +46,6 @@ public class CravingsModModBlockEntities {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RADISH_CROP.get(), SidedInvWrapper::new);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, JALAPENO_CROP.get(), SidedInvWrapper::new);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, GREEN_PEPPER_CROP.get(), SidedInvWrapper::new);
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, GREEN_BEAN_CROP.get(), SidedInvWrapper::new);
 	}
 }

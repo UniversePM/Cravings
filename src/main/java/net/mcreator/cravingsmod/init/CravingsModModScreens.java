@@ -11,7 +11,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.mcreator.cravingsmod.client.gui.SackGUIScreen;
 import net.mcreator.cravingsmod.client.gui.FryerGUIScreen;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(Dist.CLIENT)
 public class CravingsModModScreens {
 	@SubscribeEvent
 	public static void clientLoad(RegisterMenuScreensEvent event) {

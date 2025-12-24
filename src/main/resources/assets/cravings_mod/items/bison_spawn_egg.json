@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -11719669
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -12768489
-      }
-    ]
+    "model": "cravings_mod:item/bison_spawn_egg"
   }
 }

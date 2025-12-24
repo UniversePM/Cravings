@@ -11,7 +11,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.mcreator.cravingsmod.client.model.ModelDeer;
 import net.mcreator.cravingsmod.client.model.ModelBison;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
+@EventBusSubscriber(Dist.CLIENT)
 public class CravingsModModModels {
 	@SubscribeEvent
 	public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {

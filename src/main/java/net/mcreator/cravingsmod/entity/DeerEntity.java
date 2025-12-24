@@ -3,6 +3,8 @@ package net.mcreator.cravingsmod.entity;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.EventHooks;
 
+import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -12,25 +14,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.PanicGoal;
-import net.minecraft.world.entity.ai.goal.FollowMobGoal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.EatBlockGoal;
-import net.minecraft.world.entity.ai.goal.BreedGoal;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.TamableAnimal;
-import net.minecraft.world.entity.SpawnPlacementTypes;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
@@ -41,7 +28,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.component.DataComponents;
 
@@ -182,28 +168,23 @@ public class DeerEntity extends TamableAnimal {
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("Dataescaping", this.entityData.get(DATA_escaping));
-		compound.putBoolean("Datawalking", this.entityData.get(DATA_walking));
-		compound.putBoolean("Datalaying", this.entityData.get(DATA_laying));
-		compound.putBoolean("Datawaking", this.entityData.get(DATA_waking));
-		compound.putBoolean("Databruh", this.entityData.get(DATA_bruh));
+	public void addAdditionalSaveData(ValueOutput valueOutput) {
+		super.addAdditionalSaveData(valueOutput);
+		valueOutput.putBoolean("Dataescaping", this.entityData.get(DATA_escaping));
+		valueOutput.putBoolean("Datawalking", this.entityData.get(DATA_walking));
+		valueOutput.putBoolean("Datalaying", this.entityData.get(DATA_laying));
+		valueOutput.putBoolean("Datawaking", this.entityData.get(DATA_waking));
+		valueOutput.putBoolean("Databruh", this.entityData.get(DATA_bruh));
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		if (compound.contains("Dataescaping"))
-			this.entityData.set(DATA_escaping, compound.getBoolean("Dataescaping"));
-		if (compound.contains("Datawalking"))
-			this.entityData.set(DATA_walking, compound.getBoolean("Datawalking"));
-		if (compound.contains("Datalaying"))
-			this.entityData.set(DATA_laying, compound.getBoolean("Datalaying"));
-		if (compound.contains("Datawaking"))
-			this.entityData.set(DATA_waking, compound.getBoolean("Datawaking"));
-		if (compound.contains("Databruh"))
-			this.entityData.set(DATA_bruh, compound.getBoolean("Databruh"));
+	public void readAdditionalSaveData(ValueInput valueInput) {
+		super.readAdditionalSaveData(valueInput);
+		this.entityData.set(DATA_escaping, valueInput.getBooleanOr("Dataescaping", false));
+		this.entityData.set(DATA_walking, valueInput.getBooleanOr("Datawalking", false));
+		this.entityData.set(DATA_laying, valueInput.getBooleanOr("Datalaying", false));
+		this.entityData.set(DATA_waking, valueInput.getBooleanOr("Datawaking", false));
+		this.entityData.set(DATA_bruh, valueInput.getBooleanOr("Databruh", false));
 	}
 
 	@Override

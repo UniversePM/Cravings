@@ -17,7 +17,7 @@ import net.minecraft.core.registries.Registries;
 
 import net.mcreator.cravingsmod.CravingsModMod;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class CravingsModModTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CravingsModMod.MODID);
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CRAVINGS = REGISTRY.register("cravings",
@@ -88,6 +88,7 @@ public class CravingsModModTabs {
 				tabData.accept(CravingsModModItems.GREEN_PEPPER.get());
 				tabData.accept(CravingsModModItems.GREEN_PEPPER_SEEDS.get());
 				tabData.accept(CravingsModModItems.DEER_SPAWN_EGG.get());
+				tabData.accept(CravingsModModItems.GREEN_BEAN_SEEDS.get());
 			}).build());
 
 	@SubscribeEvent
@@ -169,6 +170,7 @@ public class CravingsModModTabs {
 			tabData.accept(CravingsModModItems.RADISH_SEEDS.get());
 			tabData.accept(CravingsModModItems.JALAPENO_SEEDS.get());
 			tabData.accept(CravingsModModItems.GREEN_PEPPER_SEEDS.get());
+			tabData.accept(CravingsModModItems.GREEN_BEAN_SEEDS.get());
 		} else if (tabData.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
 			tabData.accept(CravingsModModItems.BISON_SPAWN_EGG.get());
 			tabData.accept(CravingsModModItems.DEER_SPAWN_EGG.get());

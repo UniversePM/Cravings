@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.animation.KeyframeAnimation;
 
 import net.mcreator.cravingsmod.procedures.DeerWalkAnimProcedure;
 import net.mcreator.cravingsmod.procedures.DeerPlaybackConditionProcedure;
@@ -59,9 +60,17 @@ public class DeerRenderer extends MobRenderer<DeerEntity, LivingEntityRenderStat
 
 	private static final class AnimatedModel extends ModelDeer {
 		private DeerEntity entity = null;
+		private final KeyframeAnimation keyframeAnimation0;
+		private final KeyframeAnimation keyframeAnimation1;
+		private final KeyframeAnimation keyframeAnimation2;
+		private final KeyframeAnimation keyframeAnimation3;
 
 		public AnimatedModel(ModelPart root) {
 			super(root);
+			this.keyframeAnimation0 = DeerAnimation.waking.bake(root);
+			this.keyframeAnimation1 = DeerAnimation.laying.bake(root);
+			this.keyframeAnimation2 = DeerAnimation.run.bake(root);
+			this.keyframeAnimation3 = DeerAnimation.walk.bake(root);
 		}
 
 		public void setEntity(DeerEntity entity) {
@@ -71,12 +80,12 @@ public class DeerRenderer extends MobRenderer<DeerEntity, LivingEntityRenderStat
 		@Override
 		public void setupAnim(LivingEntityRenderState state) {
 			this.root().getAllParts().forEach(ModelPart::resetPose);
-			this.animate(entity.animationState0, DeerAnimation.waking, state.ageInTicks, 1f);
-			this.animate(entity.animationState1, DeerAnimation.laying, state.ageInTicks, 1f);
+			this.keyframeAnimation0.apply(entity.animationState0, state.ageInTicks, 1f);
+			this.keyframeAnimation1.apply(entity.animationState1, state.ageInTicks, 1f);
 			if (DeerPlaybackConditionProcedure.execute(entity))
-				this.animateWalk(DeerAnimation.run, state.walkAnimationPos, state.walkAnimationSpeed, 1f, 1f);
+				this.keyframeAnimation2.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 1f, 1f);
 			if (DeerWalkAnimProcedure.execute(entity))
-				this.animateWalk(DeerAnimation.walk, state.walkAnimationPos, state.walkAnimationSpeed, 1.3f, 1.2f);
+				this.keyframeAnimation3.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 1.3f, 1.2f);
 			super.setupAnim(state);
 		}
 	}

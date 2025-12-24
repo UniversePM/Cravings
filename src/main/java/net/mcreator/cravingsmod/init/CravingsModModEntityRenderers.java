@@ -11,7 +11,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.mcreator.cravingsmod.client.renderer.DeerRenderer;
 import net.mcreator.cravingsmod.client.renderer.BisonRenderer;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(Dist.CLIENT)
 public class CravingsModModEntityRenderers {
 	@SubscribeEvent
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {

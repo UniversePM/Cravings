@@ -1,4 +1,3 @@
-
 package net.mcreator.cravingsmod.block;
 
 import org.checkerframework.checker.units.qual.s;
@@ -8,11 +7,15 @@ import net.neoforged.neoforge.common.util.DeferredSoundType;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -24,6 +27,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.entity.player.Player;
@@ -35,20 +39,16 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.block.Blocks;
 
-import net.mcreator.cravingsmod.procedures.CropMealSuccessConditionProcedure;
-import net.mcreator.cravingsmod.procedures.GreenBeanMealProcedure;
-import net.mcreator.cravingsmod.procedures.TomatoGrowProcedure;
-import net.mcreator.cravingsmod.procedures.CropBoneMealConditionProcedure;
-import net.mcreator.cravingsmod.procedures.GreenBeanCropBlockDestroyedByPlayerProcedure;
+import net.mcreator.cravingsmod.procedures.*;
 import net.mcreator.cravingsmod.block.entity.GreenBeanCropBlockEntity;
 
-public class GreenBeanCropBlock extends DoublePlantBlock implements EntityBlock, BonemealableBlock {
-	public static final IntegerProperty BLOCKSTATE = IntegerProperty.create("blockstate", 0, 7);
+import javax.annotation.Nullable;
+
+public class GreenBeanCropBlock extends Block implements EntityBlock, BonemealableBlock {
+	public static final IntegerProperty BLOCKSTATE = IntegerProperty.create("blockstate", 0, 12);
+	public static final EnumProperty<DoubleBlockHalf> DOUBLE_BLOCK_HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
 
 	public GreenBeanCropBlock(BlockBehaviour.Properties properties) {
 		super(properties.mapColor(MapColor.COLOR_LIGHT_GREEN)
@@ -71,41 +71,73 @@ public class GreenBeanCropBlock extends DoublePlantBlock implements EntityBlock,
 							return 0;
 						if (s.getValue(BLOCKSTATE) == 7)
 							return 0;
+						if (s.getValue(BLOCKSTATE) == 8)
+							return 0;
+						if (s.getValue(BLOCKSTATE) == 9)
+							return 0;
+						if (s.getValue(BLOCKSTATE) == 10)
+							return 0;
+						if (s.getValue(BLOCKSTATE) == 11)
+							return 0;
+						if (s.getValue(BLOCKSTATE) == 12)
+							return 0;
 						return 0;
 					}
 				}.getLightLevel())).noCollission().noOcclusion().randomTicks().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
-
+		this.registerDefaultState(this.stateDefinition.any().setValue(DOUBLE_BLOCK_HALF, DOUBLE_BLOCK_HALF.getValue("lower").get()).setValue(AGE, 0));
 	}
 
 	@Override
-	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return 60;
+	public boolean propagatesSkylightDown(BlockState state) {
+		return true;
 	}
 
 	@Override
-	public boolean mayPlaceOn(BlockState groundState, BlockGetter worldIn, BlockPos pos) {
-		return groundState.is(Blocks.FARMLAND);
+	public int getLightBlock(BlockState state) {
+		return 0;
 	}
 
 	@Override
-	public boolean canSurvive(BlockState blockstate, LevelReader worldIn, BlockPos pos) {
-		BlockPos blockpos = pos.below();
-		BlockState groundState = worldIn.getBlockState(blockpos);
-		if (blockstate.getValue(HALF) == DoubleBlockHalf.UPPER)
-			return groundState.is(this) && groundState.getValue(HALF) == DoubleBlockHalf.LOWER;
-		else
-			return this.mayPlaceOn(groundState, worldIn, blockpos);
+	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return Shapes.empty();
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return box(0, 0.01, 0, 16, 16, 16);
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(BLOCKSTATE);
+		builder.add(DOUBLE_BLOCK_HALF, AGE, BLOCKSTATE);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		return super.getStateForPlacement(context).setValue(DOUBLE_BLOCK_HALF, DOUBLE_BLOCK_HALF.getValue("lower").get()).setValue(AGE, 0);
+	}
+
+	@Override
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData, Player entity) {
+		return ItemStack.EMPTY;
+	}
+
+	@Override
+	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
+		return PathType.WALKABLE;
+	}
+
+	@Override
+	public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean moving) {
+		super.neighborChanged(blockstate, world, pos, neighborBlock, orientation, moving);
+		GreenBeanCropNChangeProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), blockstate);
 	}
 
 	@Override
 	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
-		TomatoGrowProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), blockstate);
+		super.randomTick(blockstate, world, pos, random);
+		DoubleCropGrowProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), blockstate);
 	}
 
 	@Override
@@ -114,7 +146,6 @@ public class GreenBeanCropBlock extends DoublePlantBlock implements EntityBlock,
 		GreenBeanCropBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), blockstate, entity);
 		return retval;
 	}
-
 
 	@Override
 	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState blockstate) {
@@ -131,7 +162,13 @@ public class GreenBeanCropBlock extends DoublePlantBlock implements EntityBlock,
 
 	@Override
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState blockstate) {
-		GreenBeanMealProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), blockstate);
+		DoubleCropMealProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), blockstate);
+	}
+
+	@Override
+	public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
+		return tileEntity instanceof MenuProvider menuProvider ? menuProvider : null;
 	}
 
 	@Override
@@ -143,6 +180,25 @@ public class GreenBeanCropBlock extends DoublePlantBlock implements EntityBlock,
 	public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
 		super.triggerEvent(state, world, pos, eventID, eventParam);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		return blockEntity == null ? false : blockEntity.triggerEvent(eventID, eventParam);
+		return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
+	}
+
+	@Override
+	protected void affectNeighborsAfterRemoval(BlockState blockstate, ServerLevel world, BlockPos blockpos, boolean flag) {
+		Containers.updateNeighboursAfterDestroy(blockstate, world, blockpos);
+	}
+
+	@Override
+	public boolean hasAnalogOutputSignal(BlockState state) {
+		return true;
+	}
+
+	@Override
+	public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
+		BlockEntity tileentity = world.getBlockEntity(pos);
+		if (tileentity instanceof GreenBeanCropBlockEntity be)
+			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
+		else
+			return 0;
 	}
 }

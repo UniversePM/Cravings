@@ -16,13 +16,12 @@ import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.cravingsmod.init.CravingsModModItems;
-import net.mcreator.cravingsmod.init.CravingsModModBlocks;
 
 public class GreenBeanCropBlockDestroyedByPlayerProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity) {
 		if (entity == null)
 			return;
-		if ((blockstate.getBlock().getStateDefinition().getProperty("blockstate") instanceof IntegerProperty _getip1 ? blockstate.getValue(_getip1) : -1) == 6 && getEntityGameType(entity) == GameType.SURVIVAL) {
+		if ((blockstate.getBlock().getStateDefinition().getProperty("age") instanceof IntegerProperty _getip1 ? blockstate.getValue(_getip1) : -1) == 5 && getEntityGameType(entity) == GameType.SURVIVAL) {
 			for (int index0 = 0; index0 < Math.round(Mth.nextInt(RandomSource.create(), 3, 5)); index0++) {
 				if (world instanceof ServerLevel _level) {
 					ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(CravingsModModItems.GREEN_BEANS.get()));
@@ -31,10 +30,10 @@ public class GreenBeanCropBlockDestroyedByPlayerProcedure {
 				}
 			}
 		}
-		if ((blockstate.getBlock().getStateDefinition().getProperty("blockstate") instanceof IntegerProperty _getip6 ? blockstate.getValue(_getip6) : -1) == 7 && getEntityGameType(entity) == GameType.SURVIVAL) {
+		if ((blockstate.getBlock().getStateDefinition().getProperty("age") instanceof IntegerProperty _getip6 ? blockstate.getValue(_getip6) : -1) == 6 && getEntityGameType(entity) == GameType.SURVIVAL) {
 			for (int index1 = 0; index1 < 2; index1++) {
 				if (world instanceof ServerLevel _level) {
-					ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(CravingsModModBlocks.GREEN_BEAN_CROP.get()));
+					ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(CravingsModModItems.GREEN_BEAN_SEEDS.get()));
 					entityToSpawn.setPickUpDelay(10);
 					_level.addFreshEntity(entityToSpawn);
 				}

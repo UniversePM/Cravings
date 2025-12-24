@@ -1,39 +1,36 @@
 {
   "_fv": 79,
-  "_type": "plant",
+  "_type": "block",
   "definition": {
+    "texture": "green_bean_low_0",
+    "textureTop": "",
+    "textureLeft": "",
+    "textureFront": "",
+    "textureRight": "",
+    "textureBack": "",
     "renderType": 12,
-    "texture": "tomato_crop_up_0",
-    "textureBottom": "tomato_crop_low_0",
     "customModelName": "Cross model",
+    "rotationMode": 0,
+    "enablePitch": false,
+    "emissiveRendering": false,
+    "displayFluidOverlay": false,
+    "animations": [],
     "itemTexture": "",
     "particleTexture": "lemon_leaves",
+    "blockSetType": "OAK",
+    "pottedPlant": {
+      "value": ""
+    },
     "tintType": "No tint",
     "isItemTinted": false,
-    "plantType": "double",
-    "suspiciousStewEffect": "SPEED",
-    "suspiciousStewDuration": 100,
-    "secondaryTreeChance": 0.1,
-    "trees": [
-      null,
-      null
-    ],
-    "flowerTrees": [
-      null,
-      null
-    ],
-    "megaTrees": [
-      null,
-      null
-    ],
-    "growapableSpawnType": "Crop",
-    "growapableMaxHeight": 2,
-    "customBoundingBox": false,
+    "hasTransparency": true,
+    "connectedSides": false,
+    "transparencyType": "CUTOUT",
     "disableOffset": false,
     "boundingBoxes": [
       {
         "mx": 0.0,
-        "my": 0.0,
+        "my": 0.01,
         "mz": 0.0,
         "Mx": 16.0,
         "My": 16.0,
@@ -41,65 +38,98 @@
         "subtract": false
       }
     ],
-    "name": "Tomato Crop",
+    "customProperties": [
+      {
+        "arrayData": [
+          "upper",
+          "lower"
+        ],
+        "name": "DOUBLE_BLOCK_HALF",
+        "type": "string",
+        "value": "lower"
+      },
+      {
+        "min": 0,
+        "max": 6,
+        "name": "CUSTOM:age",
+        "type": "integer",
+        "value": 0
+      }
+    ],
+    "name": "Green Bean Crop",
     "specialInformation": {
       "fixedValue": []
     },
-    "creativeTabs": [],
     "hardness": 0.0,
-    "resistance": 0.0,
-    "luminance": 0,
-    "unbreakable": false,
-    "isSolid": false,
+    "resistance": 10.0,
+    "hasGravity": false,
     "isWaterloggable": false,
-    "hasBlockItem": true,
+    "hasBlockItem": false,
     "maxStackSize": 64,
     "rarity": "COMMON",
     "immuneToFire": false,
-    "isCustomSoundType": false,
-    "soundOnStep": {
-      "value": "PLANT"
-    },
-    "breakSound": {
-      "value": ""
-    },
-    "stepSound": {
-      "value": ""
-    },
-    "placeSound": {
-      "value": ""
-    },
-    "hitSound": {
-      "value": ""
-    },
-    "fallSound": {
-      "value": ""
-    },
-    "useLootTableForDrops": false,
+    "creativeTabs": [],
+    "destroyTool": "Not specified",
     "customDrop": {
-      "value": "CUSTOM:TomatoSeeds"
+      "value": "Blocks.AIR"
     },
-    "dropAmount": 1,
-    "forceTicking": true,
-    "emissiveRendering": false,
-    "hasTileEntity": true,
+    "dropAmount": 0,
+    "xpAmountMin": 0,
+    "xpAmountMax": 0,
+    "useLootTableForDrops": false,
+    "requiresCorrectTool": false,
+    "enchantPowerBonus": 0.0,
+    "plantsGrowOn": false,
+    "canRedstoneConnect": false,
+    "lightOpacity": 0,
+    "tickRate": 0,
+    "tickRandomly": true,
     "isReplaceable": false,
-    "colorOnMap": "GRASS",
+    "canProvidePower": false,
+    "emittedRedstonePower": {
+      "fixedValue": 15.0
+    },
+    "colorOnMap": "LIME",
+    "noteBlockInstrument": "harp",
     "creativePickItem": {
       "value": ""
     },
     "offsetType": "NONE",
-    "aiPathNodeType": "DEFAULT",
+    "aiPathNodeType": "WALKABLE",
+    "strippingResult": {
+      "value": ""
+    },
     "ignitedByLava": false,
     "flammability": 0,
-    "fireSpreadSpeed": 60,
-    "jumpFactor": 1.0,
+    "fireSpreadSpeed": 0,
+    "isLadder": false,
+    "slipperiness": 0.6,
     "speedFactor": 1.0,
-    "canBePlacedOn": [
-      {
-        "value": "Blocks.FARMLAND"
-      }
-    ],
+    "jumpFactor": 1.0,
+    "reactionToPushing": "DESTROY",
+    "isNotColidable": true,
+    "isCustomSoundType": true,
+    "soundOnStep": {
+      "value": "PLANT"
+    },
+    "breakSound": {
+      "value": "block.crop.break"
+    },
+    "fallSound": {
+      "value": "block.grass.fall"
+    },
+    "hitSound": {
+      "value": "block.grass.hit"
+    },
+    "placeSound": {
+      "value": "item.crop.plant"
+    },
+    "stepSound": {
+      "value": "block.grass.step"
+    },
+    "luminance": 0,
+    "unbreakable": false,
+    "vanillaToolTier": "NONE",
     "isBonemealable": true,
     "isBonemealTargetCondition": {
       "name": "CropBoneMealCondition"
@@ -108,19 +138,49 @@
       "name": "CropMealSuccessCondition"
     },
     "onBonemealSuccess": {
-      "name": "CropMeal"
+      "name": "DoubleCropMeal"
     },
-    "frequencyOnChunks": 5,
-    "generateFeature": false,
-    "restrictionBiomes": [],
-    "generationType": "Flower",
-    "patchSize": 64,
-    "generateAtAnyHeight": false,
+    "sensitiveToVibration": false,
+    "vibrationalEvents": [],
+    "vibrationSensitivityRadius": {
+      "fixedValue": 7.0
+    },
+    "hasInventory": true,
+    "openGUIOnRightClick": false,
+    "inventorySize": 9,
+    "inventoryStackSize": 99,
+    "inventoryDropWhenDestroyed": true,
+    "inventoryComparatorPower": true,
+    "inventoryOutSlotIDs": [],
+    "inventoryInSlotIDs": [],
+    "hasEnergyStorage": false,
+    "energyInitial": 0,
+    "energyCapacity": 400000,
+    "energyMaxReceive": 200,
+    "energyMaxExtract": 200,
+    "isFluidTank": false,
+    "fluidCapacity": 8000,
+    "fluidRestrictions": [],
+    "onNeighbourBlockChanges": {
+      "name": "GreenBeanCropNChange"
+    },
     "onTickUpdate": {
-      "name": "CropGrow"
+      "name": "DoubleCropGrow"
     },
     "onDestroyedByPlayer": {
-      "name": "TomatoCropBlockDestroyedByPlayer"
-    }
+      "name": "GreenBeanCropBlockDestroyedByPlayer"
+    },
+    "generateFeature": false,
+    "restrictionBiomes": [],
+    "blocksToReplace": [
+      {
+        "value": "TAG:stone_ore_replaceables"
+      }
+    ],
+    "generationShape": "UNIFORM",
+    "frequencyPerChunks": 10,
+    "frequencyOnChunk": 16,
+    "minGenerateHeight": 0,
+    "maxGenerateHeight": 64
   }
 }

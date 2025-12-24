@@ -1,52 +1,43 @@
 {
   "variants": {
-  	"half=upper,blockstate=0": {
-      	"model": "cravings_mod:block/green_bean_crop"
-  	},
-  	"half=upper,blockstate=1": {
-      	"model": "cravings_mod:block/green_bean_crop_block_state_blockstate_0"
-  	},
-  	"half=upper,blockstate=2": {
-      	"model": "cravings_mod:block/green_bean_crop_block_state_blockstate_1"
-  	},
-  	"half=upper,blockstate=3": {
-      	"model": "cravings_mod:block/green_bean_crop_block_state_blockstate_2"
-  	},
-  	"half=upper,blockstate=4": {
-      	"model": "cravings_mod:block/green_bean_crop_block_state_blockstate_3"
-  	},
-  	"half=upper,blockstate=5": {
-      	"model": "cravings_mod:block/green_bean_crop_block_state_blockstate_4"
-  	},
-  	"half=upper,blockstate=6": {
-      	"model": "cravings_mod:block/green_bean_crop_block_state_blockstate_5"
-  	},
-  	"half=upper,blockstate=7": {
-      	"model": "cravings_mod:block/green_bean_crop_block_state_blockstate_6"
-  	},
-  	"half=lower,blockstate=0": {
-      	"model": "cravings_mod:block/green_bean_crop_bottom"
-  	},
-  	"half=lower,blockstate=1": {
-      	"model": "cravings_mod:block/green_bean_crop_bottom_block_state_blockstate_0"
-  	},
-  	"half=lower,blockstate=2": {
-      	"model": "cravings_mod:block/green_bean_crop_bottom_block_state_blockstate_1"
-  	},
-  	"half=lower,blockstate=3": {
-      	"model": "cravings_mod:block/green_bean_crop_bottom_block_state_blockstate_2"
-  	},
-  	"half=lower,blockstate=4": {
-      	"model": "cravings_mod:block/green_bean_crop_bottom_block_state_blockstate_3"
-  	},
-  	"half=lower,blockstate=5": {
-      	"model": "cravings_mod:block/green_bean_crop_bottom_block_state_blockstate_4"
-  	},
-  	"half=lower,blockstate=6": {
-      	"model": "cravings_mod:block/green_bean_crop_bottom_block_state_blockstate_5"
-  	},
-  	"half=lower,blockstate=7": {
-      	"model": "cravings_mod:block/green_bean_crop_bottom_block_state_blockstate_6"
-  	}
+    "blockstate=0": {
+      "model": "cravings_mod:block/green_bean_crop"
+    },
+    "blockstate=1": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_0"
+    },
+    "blockstate=2": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_1"
+    },
+    "blockstate=3": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_2"
+    },
+    "blockstate=4": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_3"
+    },
+    "blockstate=5": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_4"
+    },
+    "blockstate=6": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_5"
+    },
+    "blockstate=7": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_6"
+    },
+    "blockstate=8": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_7"
+    },
+    "blockstate=9": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_8"
+    },
+    "blockstate=10": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_9"
+    },
+    "blockstate=11": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_10"
+    },
+    "blockstate=12": {
+      "model": "cravings_mod:block/green_bean_blockstate_blockstate_11"
+    }
   }
 }

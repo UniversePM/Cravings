@@ -1,0 +1,13 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "side": "bcauldron_side",
+        "top": "bcauldron_top",
+        "bottom": "bcauldron_bottom",
+        "inside": "bcauldron_inner"
+      },
+      "name": "default"
+    }
+  }
+}

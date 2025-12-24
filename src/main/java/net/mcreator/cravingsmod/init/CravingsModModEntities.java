@@ -21,7 +21,7 @@ import net.mcreator.cravingsmod.entity.DeerEntity;
 import net.mcreator.cravingsmod.entity.BisonEntity;
 import net.mcreator.cravingsmod.CravingsModMod;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class CravingsModModEntities {
 	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, CravingsModMod.MODID);
 	public static final DeferredHolder<EntityType<?>, EntityType<BisonEntity>> BISON = register("bison",

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "cravings_mod:item/green_bean_crop"
+    "model": "cravings_mod:item/green_bean_seeds"
   }
 }

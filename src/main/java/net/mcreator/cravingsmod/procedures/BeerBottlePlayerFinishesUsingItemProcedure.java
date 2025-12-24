@@ -12,9 +12,9 @@ public class BeerBottlePlayerFinishesUsingItemProcedure {
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 			_entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 3600, 2, false, false));
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 3600, 2, false, false));
+			_entity.addEffect(new MobEffectInstance(MobEffects.MINING_FATIGUE, 3600, 2, false, false));
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 3600, 2, false, true));
+			_entity.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 3600, 2, false, true));
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 			_entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 1200, 1, false, false));
 	}

@@ -36,12 +36,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.cravingsmod.procedures.LettuceCropNeighbourBlockChangesProcedure;
-import net.mcreator.cravingsmod.procedures.LettuceCropBlockDestroyedByPlayerProcedure;
-import net.mcreator.cravingsmod.procedures.CropMealSuccessConditionProcedure;
-import net.mcreator.cravingsmod.procedures.CropMealProcedure;
-import net.mcreator.cravingsmod.procedures.CropGrowProcedure;
-import net.mcreator.cravingsmod.procedures.CropBoneMealConditionProcedure;
+import net.mcreator.cravingsmod.procedures.*;
 import net.mcreator.cravingsmod.init.CravingsModModItems;
 import net.mcreator.cravingsmod.block.entity.LettuceCropBlockEntity;
 
@@ -164,19 +159,12 @@ public class LettuceCropBlock extends Block implements EntityBlock, Bonemealable
 	public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
 		super.triggerEvent(state, world, pos, eventID, eventParam);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		return blockEntity == null ? false : blockEntity.triggerEvent(eventID, eventParam);
+		return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
 	}
 
 	@Override
-	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-		if (state.getBlock() != newState.getBlock()) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof LettuceCropBlockEntity be) {
-				Containers.dropContents(world, pos, be);
-				world.updateNeighbourForOutputSignal(pos, this);
-			}
-			super.onRemove(state, world, pos, newState, isMoving);
-		}
+	protected void affectNeighborsAfterRemoval(BlockState blockstate, ServerLevel world, BlockPos blockpos, boolean flag) {
+		Containers.updateNeighboursAfterDestroy(blockstate, world, blockpos);
 	}
 
 	@Override

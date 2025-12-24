@@ -23,14 +23,14 @@ description="A mod for all your food needs!"
 [[dependencies.cravings_mod]]
     modId="neoforge"
     type="required"
-    versionRange="[21.4.137,)"
+    versionRange="[21.8.31,)"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.cravings_mod]]
     modId="minecraft"
     type="required"
-    versionRange="[1.21.4]"
+    versionRange="[1.21.8]"
     ordering="AFTER"
     side="BOTH"
 

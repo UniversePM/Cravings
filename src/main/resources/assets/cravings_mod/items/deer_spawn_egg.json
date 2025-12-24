@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -13982
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -1320787
-      }
-    ]
+    "model": "cravings_mod:item/deer_spawn_egg"
   }
 }
